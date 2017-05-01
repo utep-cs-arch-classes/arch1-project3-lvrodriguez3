@@ -9,18 +9,16 @@ song_4: .string "cccccc dddddd eeeeee ffffff gggggg aaaaaa bbbbbb CCCCCC"
 	.globl songs
 songs:  .word song_1 
 	.word song_2
-	.word song_3
-	.word song_4
 
 	.weak current_song
 	.weak current_note
 
 	.text
 
-	.globl advance_song
+	.globl song
 advance_song:
 
-	; void advance_song() {
+	; void song() {
 	;   if(songs[current_song][current_note]) {
 	;     current_note++;
 	;   }
