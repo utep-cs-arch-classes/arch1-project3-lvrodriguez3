@@ -15,6 +15,7 @@
 #include <p2switches.h>
 #include <shape.h>
 #include <abCircle.h>
+#include <buzzer.h>
 
 #define GREEN_LED BIT6
 
@@ -170,18 +171,6 @@ void mlAdvance(MovLayer *ml, Region *fence, Region *player1, Region *player2)
 		}
 		ml->layer->posNext = newPos;
 	} /**< for ml */
-}
-
-//Author Dr. Freudenthal
-void buzzer_init(short cycles){
-	timerAUpmode();
-	P2SEL2 &= ~(BIT6 | BIT7);
-	P2SEL &= ~BIT7;
-	P2SEL |= BIT6;
-	P2DIR = BIT6;
-      
-	CCR0 = cycles;
-	CCR1 = cycles >> 1;
 }
 
 u_int bgColor = COLOR_BLACK;     /**< The BG color */
