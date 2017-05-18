@@ -4,7 +4,7 @@
 #include <msp430.h>
 #include "buzzer.h"	
 
-void buzzer_init()
+void buzzer_init(short cycles)
 {
     /* 
        Direct timer A output "TA0.1" to P2.6.  
@@ -19,11 +19,13 @@ void buzzer_init()
     P2SEL |= BIT6;
     P2DIR = BIT6;		/* enable output to speaker (P2.6) */
 
-    buzzer_set_period(1000);	/* start buzzing!!! */
+    //buzzer_set_period(1000);	/* start buzzing!!! */
+  CCR0 = cycles; 
+  CCR1 = cycles >> 6;
 }
 
-void buzzer_set_period(short cycles)
+/*void buzzer_set_period(short cycles)
 {
   CCR0 = cycles; 
   CCR1 = cycles >> 6;		/* one half cycle */
-}
+}*/
