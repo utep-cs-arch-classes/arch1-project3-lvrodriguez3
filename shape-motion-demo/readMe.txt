@@ -52,5 +52,7 @@ Contributors:
 Dr. Freudenthal, I used a functions that were provided by Dr. Freudenthal
 Shammir Ibarra, we helped each other with the logic of my game and his game. We also shared 
 some code that helped us complete our assignment. 
-Francisco Landa, Roman Martinez
+  in shapemotion.c file functions mlAdvance
+Francisco Landa, Roman Martinez we worked together with the assembly translation. We all got together and studied and 
+translated a jump table that we had in common.
 
