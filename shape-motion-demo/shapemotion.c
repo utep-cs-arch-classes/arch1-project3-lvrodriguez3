@@ -143,13 +143,13 @@ void mlAdvance(MovLayer *ml, Region *fence, Region *player1, Region *player2)
 
 		//my code
 		if(shapeBoundary.topLeft.axes[0] < fence->topLeft.axes[0]){
-			buzzer_init(1000);
+			buzzer_init(1000);//plays sounds
 			score2++;//updates score for player2
 		}if(shapeBoundary.botRight.axes[0] > fence->botRight.axes[0]){
-			buzzer_init(1000);
+			buzzer_init(1000);//plays sound
 			score1++;//updates score for player1
 		}else{
-			buzzer_init(0);
+			buzzer_init(0);//plays no sound
 		}
 
 		//player1
@@ -172,6 +172,16 @@ void mlAdvance(MovLayer *ml, Region *fence, Region *player1, Region *player2)
 		ml->layer->posNext = newPos;
 	} /**< for ml */
 }
+
+//for sound when touching paddles
+/*void sound(){
+  if(collisionDetector(&ml1, &ml0)){
+      buzzer_set_period(1000);
+    }
+  if(!(collisionDetector(&ml1, &ml0))){
+    //buzzer_set_period(10000);
+    }
+}*/
 
 u_int bgColor = COLOR_BLACK;     /**< The BG color */
 int redrawScreen = 1;           /**< Boolean for whether screen needs to be redrawn */
