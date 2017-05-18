@@ -1,3 +1,4 @@
+ 
 //Author: Dr. Freudenthal
 //Contributions: Lucia Rodriguez
 /** \file shapemotion.c
@@ -15,7 +16,7 @@
 #include <p2switches.h>
 #include <shape.h>
 #include <abCircle.h>
-#include <buzzer.h>
+#include "buzzer.h"
 
 #define GREEN_LED BIT6
 
@@ -23,7 +24,7 @@
 unsigned int score1 = 0;
 unsigned int score2 = 0;
 
-AbRect rect10 = {abRectGetBounds, abRectCheck, {2 ,10}};/**< 10x10 rectangle */
+AbRect rect10 = {abRectGetBounds, abRectCheck, {3 ,15}};/**< 10x10 rectangle */
 
 AbRectOutline fieldOutline = {	/* playing field */
 		abRectOutlineGetBounds, abRectOutlineCheck,   
@@ -35,7 +36,8 @@ Layer layer3 = {		/**< Layer with an yellow circle */
 		(AbShape *)&circle4,
 		{(screenWidth/2)+10, (screenHeight/2)+5}, /**< bit below & right of center */
 		{0,0}, {0,0},				    /* last & next pos */
-		COLOR_VIOLET
+		COLOR_RED
+	       
 };
 
 
@@ -143,13 +145,13 @@ void mlAdvance(MovLayer *ml, Region *fence, Region *player1, Region *player2)
 
 		//my code
 		if(shapeBoundary.topLeft.axes[0] < fence->topLeft.axes[0]){
-			buzzer_init(1000);//plays sounds
+		  buzzer_set_period(1500);//plays sounds
 			score2++;//updates score for player2
 		}if(shapeBoundary.botRight.axes[0] > fence->botRight.axes[0]){
-			buzzer_init(1000);//plays sound
+			buzzer_set_period(1500);//plays sound
 			score1++;//updates score for player1
 		}else{
-			buzzer_init(0);//plays no sound
+			buzzer_set_period(0);//plays no sound
 		}
 
 		//player1
@@ -293,15 +295,15 @@ void wdt_c_handler()
 		//score1 = player1 = green
 		if(score1 > score2){
 		  //if player 1/green is winning displays message in color of player that wins
-			drawString5x7(11, screenHeight - 8, "Player1 WINS", COLOR_GREEN, COLOR_BLACK); 
+		  drawString5x7(11, screenHeight - 8, "Player1 WINS", COLOR_GREEN, COLOR_BLACK); 
 		}
 		else if(score2 > score1){
 		  //if player 2/blue is winning displays message in color of player that wins
-			drawString5x7(11, screenHeight - 8, "Player2 WINS", COLOR_BLUE, COLOR_BLACK);
+		  drawString5x7(11, screenHeight - 8, "Player2 WINS", COLOR_BLUE, COLOR_BLACK);
 		}
 		else{
 		  //When both players have same score
-			drawString5x7(11, screenHeight - 8, "BOTH WIN", COLOR_RED, COLOR_BLACK);
+		  drawString5x7(11, screenHeight - 8, "BOTH WIN", COLOR_RED, COLOR_BLACK);
 		}
 
 
